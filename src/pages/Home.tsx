@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <div className="container mx-auto mt-4">
       <SearchBar />
-      <CharacterList />
+      <CharacterList characters={context?.characters}/>
     </div>
   );
 }

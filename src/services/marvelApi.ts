@@ -58,3 +58,30 @@ export async function fetchCharacters(name?: string) {
     return [];
   }
 }
+
+export async function fetchCharacterDetails(id: string) {
+  try {
+    const url = `${API_URL}/characters/${id}?apikey=${API_KEY}`;
+    const response = await fetch(url);
+
+    const data = await response.json();
+    return data.data.results[0];
+  } catch (error) {
+    console.error('Error', error);
+    throw error;
+  }
+}
+
+export const fetchCharacterImage = async (resourceURI: string) => {
+  try {
+    const response = await fetch(`${resourceURI}?apikey=${API_KEY}`);
+
+    const data = await response.json();
+    if (data?.data?.results?.length > 0) {
+      const thumbnail = data.data.results[0].thumbnail;
+      return `${thumbnail.path}.${thumbnail.extension}`;
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};

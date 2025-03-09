@@ -14,7 +14,6 @@ interface CharacterContextType {
   setLoading: Dispatch<SetStateAction<boolean>>;
   setCharacters: Dispatch<SetStateAction<Character[]>>;
   setSearch: Dispatch<SetStateAction<string>>;
-
   toggleFavorite: (character: Character) => void;
 }
 

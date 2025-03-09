@@ -1,9 +1,17 @@
 import { useCharacterContext } from '../context/useCharacterContext';
 import favoriteFill from '../assets/favorite-fill.svg';
 import favoriteNotFill from '../assets/favorite-not-fill.svg';
+import { useNavigate } from 'react-router';
 
-export default function CharacterList() {
+interface Character {
+  id: number;
+  name: string;
+  thumbnail: { path: string; extension: string };
+}
+
+export default function CharacterList({ characters }: { characters: Character[] | undefined }) {
   const context = useCharacterContext();
+  const navigate = useNavigate();
 
   return (
     <div className="container mx-auto px-4">
@@ -11,12 +19,14 @@ export default function CharacterList() {
         <p className="text-center text-lg font-semibold mt-4">Loading characters...</p>
       ) : (
         <div>
-          <p className="uppercase my-4 text-gray-700 text-sm">
-            {context?.characters.length} results
-          </p>
+          <p className="uppercase my-4 text-gray-700 text-sm">{characters?.length} results</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
-            {context?.characters.map((character) => (
-              <div key={character.id} className="bg-gray-900 overflow-hidden ">
+            {characters?.map((character) => (
+              <div
+                onClick={() => navigate(`/character/${character.id}`)}
+                key={character.id}
+                className="bg-gray-900 overflow-hidden "
+              >
                 <img
                   src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
                   alt={character.name}
@@ -24,7 +34,12 @@ export default function CharacterList() {
                 />
                 <div className="relative bg-black flex justify-between items-center h-24 px-4 py-2 clip-corner">
                   <h3 className="text-sm text-white truncate w-3/4">{character.name}</h3>
-                  <button onClick={() => context.toggleFavorite(character)}>
+                  <button
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      context?.toggleFavorite(character);
+                    }}
+                  >
                     <img
                       src={
                         context?.favorites.some((fav) => fav.id === character.id)

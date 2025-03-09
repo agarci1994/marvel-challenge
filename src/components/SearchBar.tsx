@@ -16,6 +16,7 @@ export default function SearchBar() {
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
+      context?.setSearch(search);
       getCharacter(search);
     }, 500);
 
