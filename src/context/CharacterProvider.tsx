@@ -14,14 +14,7 @@ export function CharacterProvider({ children }: { children: React.ReactNode }) {
     JSON.parse(localStorage.getItem('favorites') || '[]'),
   );
   const [loading, setLoading] = useState<boolean>(false);
-
-  // const getCharacter = useCallback(async (name?: string) => {
-  //   setLoading(true);
-  //   const characters = await fetchCharacters(name);
-  //   console.log('callback', characters);
-  //   setCharacters(characters);
-  //   setLoading(false);
-  // }, []);
+  const [search, setSearch] = useState<string>('');
 
   useEffect(() => {
     localStorage.setItem('favorites', JSON.stringify(favorites));
@@ -38,7 +31,16 @@ export function CharacterProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <CharacterContext.Provider
-      value={{ characters, favorites, loading, setLoading, setCharacters, toggleFavorite }}
+      value={{
+        characters,
+        favorites,
+        loading,
+        setLoading,
+        setCharacters,
+        toggleFavorite,
+        search,
+        setSearch,
+      }}
     >
       {children}
     </CharacterContext.Provider>

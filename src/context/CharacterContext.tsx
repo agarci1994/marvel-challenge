@@ -10,8 +10,11 @@ interface CharacterContextType {
   characters: Character[];
   favorites: Character[];
   loading: boolean;
+  search: string;
   setLoading: Dispatch<SetStateAction<boolean>>;
   setCharacters: Dispatch<SetStateAction<Character[]>>;
+  setSearch: Dispatch<SetStateAction<string>>;
+
   toggleFavorite: (character: Character) => void;
 }
 

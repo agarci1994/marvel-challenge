@@ -1,19 +1,57 @@
 const API_URL = import.meta.env.VITE_MARVEL_API_URL;
 const API_KEY = import.meta.env.VITE_MARVEL_PUBLIC_KEY;
 
-export async function fetchCharacters(name?: string) {
-  const params = new URLSearchParams({
-    apikey: API_KEY,
-    limit: '50',
-  });
+const CACHE_KEY = 'marvelCharactersCache';
+const SEARCH_CACHE_KEY = 'marvelSearchCache';
+const CACHE_EXPIRATION = 24 * 60 * 60 * 1000;
 
-  if (name) {
-    params.append('nameStartsWith', name);
+const getCachedData = (key: string) => {
+  const cachedData = localStorage.getItem(key);
+  const cacheTimestamp = localStorage.getItem(`${key}_timestamp`);
+
+  if (cachedData && cacheTimestamp) {
+    const now = Date.now();
+    if (now - parseInt(cacheTimestamp, 10) < CACHE_EXPIRATION) {
+      return JSON.parse(cachedData);
+    }
+  }
+  return null;
+};
+
+const savedCachedData = (key: string, data: unknown) => {
+  localStorage.setItem(key, JSON.stringify(data));
+  localStorage.setItem(`${key}_timestamp`, Date.now().toString());
+};
+
+export async function fetchCharacters(name?: string) {
+  const cacheKey = name ? `${SEARCH_CACHE_KEY}_${name.toLowerCase()}` : CACHE_KEY;
+  const cachedData = getCachedData(cacheKey);
+
+  if (cachedData) {
+    return cachedData;
   }
 
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+    const params = new URLSearchParams({
+      apikey: API_KEY,
+      limit: '50',
+    });
+
+    if (name) {
+      params.append('nameStartsWith', name);
+    }
+
     const response = await fetch(`${API_URL}/characters?${params.toString()}`);
+
+    clearTimeout(timeoutId);
+
     const data = await response.json();
+
+    savedCachedData(cacheKey, data.data.results);
+
     return data.data.results;
   } catch (error) {
     console.error('Error fetching characters:', error);

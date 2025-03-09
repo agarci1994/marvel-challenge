@@ -8,10 +8,10 @@ export default function Home() {
   const context = useCharacterContext();
 
   const getCharacter = useCallback(async () => {
-    context?.setLoading(false);
+    context?.setLoading(true);
     const characters = await fetchCharacters();
     context?.setCharacters(characters);
-    context?.setLoading(true);
+    context?.setLoading(false);
   }, []);
 
   useEffect(() => {
