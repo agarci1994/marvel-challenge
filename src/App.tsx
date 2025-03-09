@@ -1,11 +1,12 @@
-function App() {
+import { CharacterProvider } from './context/CharacterProvider';
+import { NavBar } from './components/NavBar';
+import Home from './pages/Home';
+
+export default function App() {
   return (
-    <>
-      <div className="container bg-red-500 mx-auto">
-        <h1 className="bold text-8xl">Hello World!</h1>
-      </div>
-    </>
+    <CharacterProvider>
+      <NavBar />
+      <Home />
+    </CharacterProvider>
   );
 }
-
-export default App;

@@ -1,1 +1,8 @@
 @import 'tailwindcss';
+
+@layer utilities {
+  .red-500 {
+    background-color: #ec1d24;
+    color: #ec1d24;
+  }
+}
