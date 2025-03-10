@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_MARVEL_API_URL
+const API_URL = import.meta.env.VITE_MARVEL_API_URL;
 const API_KEY = import.meta.env.VITE_MARVEL_PUBLIC_KEY;
 
 const CACHE_KEY = 'marvelCharactersCache';
@@ -88,6 +88,9 @@ export const fetchCharacterImage = async (resourceURI: string) => {
 
 export const fetchComicDetails = async (comicURI: string) => {
   try {
+    if (comicURI.startsWith('http://')) {
+      comicURI = comicURI.replace('http://', 'https://');
+    }
     const response = await fetch(comicURI + `?apikey=${API_KEY}&orderBy=onsaleDate&limit=20`);
     const data = await response.json();
     return data.data.results;

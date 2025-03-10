@@ -73,6 +73,8 @@ marvel-challenge/
 │── tailwind.config.ts    # Tailwind configuration
 │── tsconfig.json         # TypeScript configuration
 ```
+## DEPLOY
+- MARVEL CHALLENGE: [https://marvel-challenge-nu.vercel.app/](https://marvel-challenge-nu.vercel.app/)
 
 ## API Documentation
 - Marvel API: [https://developer.marvel.com/documentation/getting_started](https://developer.marvel.com/documentation/getting_started)
