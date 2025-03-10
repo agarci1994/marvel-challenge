@@ -9,7 +9,7 @@ vi.mock('../../context/useCharacterContext', () => ({
 
 describe('CharacterList Component', () => {
   it('shows loading message when characters are being fetched', () => {
-    (useCharacterContext as jest.Mock).mockReturnValue({ loading: true });
+    useCharacterContext.mockReturnValue({ loading: true });
 
     render(<CharacterList characters={[]} />);
 

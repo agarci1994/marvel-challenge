@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import { describe, expect, it, vi } from 'vitest';
 
 vi.mock('react-router', async (importOriginal) => {
-  const data = await importOriginal();
+  const data = (await importOriginal()) ?? {};
   return {
     ...data,
     useNavigate: vi.fn(),
@@ -36,7 +36,7 @@ describe('CharacterCard Component', () => {
 
   it('navigates to character detail page on click', () => {
     const mockNavigate = vi.fn();
-    (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
+    useNavigate.mockReturnValue(mockNavigate);
 
     render(
       <MemoryRouter>

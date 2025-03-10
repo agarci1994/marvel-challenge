@@ -8,7 +8,18 @@ describe('NavBar Component', () => {
   it('renders logo and favorites icon', () => {
     render(
       <MemoryRouter>
-        <CharacterContext.Provider value={{ favorites: [] }}>
+        <CharacterContext.Provider
+          value={{
+            favorites: [],
+            characters: [],
+            loading: false,
+            search: '',
+            setLoading: jest.fn(),
+            setCharacters: jest.fn(),
+            setSearch: jest.fn(),
+            toggleFavorite: jest.fn(),
+          }}
+        >
           <NavBar />
         </CharacterContext.Provider>
         ,
@@ -27,6 +38,13 @@ describe('NavBar Component', () => {
             favorites: [
               { id: 1, name: 'spiderman', thumbnail: { path: 'http://', extension: 'jpg' } },
             ],
+            characters: [],
+            loading: false,
+            search: '',
+            setLoading: jest.fn(),
+            setCharacters: jest.fn(),
+            setSearch: jest.fn(),
+            toggleFavorite: jest.fn(),
           }}
         >
           <NavBar />

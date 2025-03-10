@@ -15,14 +15,14 @@ describe('CharacterCardInfo Component', () => {
   };
 
   it('renders the character name', () => {
-    (useCharacterContext as jest.Mock).mockReturnValue({ favorites: [] });
+    useCharacterContext.mockReturnValue({ favorites: [] });
 
     render(<CharacterCardInfo character={character} />);
     expect(screen.getByText('Hulk')).toBeInTheDocument();
   });
 
   it('displays the favorite icon correctly', () => {
-    (useCharacterContext as jest.Mock).mockReturnValue({
+    useCharacterContext.mockReturnValue({
       favorites: [{ id: 1 }],
     });
 
@@ -32,7 +32,7 @@ describe('CharacterCardInfo Component', () => {
 
   it('calls toggleFavorite function on button click', () => {
     const toggleFavorite = vi.fn();
-    (useCharacterContext as jest.Mock).mockReturnValue({
+    useCharacterContext.mockReturnValue({
       favorites: [],
       toggleFavorite,
     });
