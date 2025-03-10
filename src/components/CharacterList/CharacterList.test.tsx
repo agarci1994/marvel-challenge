@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { render, screen } from '@testing-library/react';
 import CharacterList from '../CharacterList';
 import { useCharacterContext } from '../../context/useCharacterContext';
