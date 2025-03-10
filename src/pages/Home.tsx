@@ -19,9 +19,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="container mx-auto mt-4">
+    <div className="container mx-auto px-4 mt-4">
       <SearchBar />
-      <CharacterList characters={context?.characters}/>
+      <CharacterList characters={context?.characters} />
     </div>
   );
 }

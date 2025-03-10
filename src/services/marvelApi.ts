@@ -85,3 +85,14 @@ export const fetchCharacterImage = async (resourceURI: string) => {
     console.error('Error:', error);
   }
 };
+
+export const fetchComicDetails = async (comicURI: string) => {
+  try {
+    const response = await fetch(comicURI + `?apikey=${API_KEY}&orderBy=onsaleDate&limit=20`);
+    const data = await response.json();
+    return data.data.results;
+  } catch (error) {
+    console.error('Error fetching comic details:', error);
+    return null;
+  }
+};
