@@ -1,54 +1,78 @@
-# React + TypeScript + Vite
+# Marvel Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React-based application that allows users to browse and search for Marvel characters, view detailed information, and manage their favorite characters.
 
-Currently, two official plugins are available:
+## Features
+- Display a list of 50 Marvel characters retrieved from the Marvel API.
+- Search functionality to filter characters by name.
+- Character detail view showing information and comics.
+- Add/remove characters to/from favorites.
+- Responsive design for both desktop and mobile views.
+- Data caching to minimize API requests.
+- ESLint and Prettier configured for code quality.
+- Jest-based testing for main components.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
+- **React 19** (Frontend framework)
+- **Vite** (Development server and build tool)
+- **TypeScript** (Static typing)
+- **Tailwind CSS** (Styling framework)
+- **Jest & Testing Library** (Testing framework)
+- **Marvel API** (Data source)
 
-## Expanding the ESLint configuration
+## Installation & Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+### Clone the repository
+```sh
+git clone <repository-url>
+cd marvel-challenge
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-});
+### Install dependencies
+```sh
+pnpm install
 ```
+
+### Environment Variables
+Create a `.env` file and add your Marvel API keys:
+```
+VITE_MARVEL_PUBLIC_KEY=your_public_key
+VITE_MARVEL_PRIVATE_KEY=your_private_key
+```
+
+### Run the development server
+```sh
+pnpm run dev
+```
+The application will be available at `http://localhost:5173/`.
+
+### Build for production
+```sh
+pnpm run build
+```
+
+### Run tests
+```sh
+pnpm run test
+```
+
+## Project Structure
+```
+marvel-challenge/
+│── src/
+│   ├── components/       # Reusable UI components
+│   ├── context/          # Global state management
+│   ├── pages/            # Application views
+│   ├── services/         # API calls and external services
+│   ├── assets/           # Static assets
+│   ├── App.tsx           # Main app component
+│   ├── main.tsx          # App entry point
+│── public/               # Static files
+│── package.json          # Project dependencies and scripts
+│── vite.config.ts        # Vite configuration
+│── tailwind.config.ts    # Tailwind configuration
+│── tsconfig.json         # TypeScript configuration
+```
+
+## API Documentation
+- Marvel API: [https://developer.marvel.com/documentation/getting_started](https://developer.marvel.com/documentation/getting_started)
