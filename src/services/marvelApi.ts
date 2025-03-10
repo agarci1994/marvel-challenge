@@ -1,11 +1,11 @@
-const API_URL = import.meta.env.VITE_MARVEL_API_URL;
+const API_URL = import.meta.env.VITE_MARVEL_API_URL
 const API_KEY = import.meta.env.VITE_MARVEL_PUBLIC_KEY;
 
 const CACHE_KEY = 'marvelCharactersCache';
 const SEARCH_CACHE_KEY = 'marvelSearchCache';
 const CACHE_EXPIRATION = 24 * 60 * 60 * 1000;
 
-const getCachedData = (key: string) => {
+export const getCachedData = (key: string) => {
   const cachedData = localStorage.getItem(key);
   const cacheTimestamp = localStorage.getItem(`${key}_timestamp`);
 
