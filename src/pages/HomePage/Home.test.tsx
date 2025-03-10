@@ -5,11 +5,11 @@ import Home from './Home';
 import { useCharacterContext } from '../../context/useCharacterContext';
 import { fetchCharacters } from '../../services/marvelApi';
 
-vi.mock('../context/useCharacterContext', () => ({
+vi.mock('../../context/useCharacterContext', () => ({
   useCharacterContext: vi.fn(),
 }));
 
-vi.mock('../services/marvelApi', () => ({
+vi.mock('../../services/marvelApi', () => ({
   fetchCharacters: vi.fn(() => Promise.resolve([{ id: 1, name: 'Spider-Man' }])),
 }));
 
@@ -29,7 +29,7 @@ describe('Home Page', () => {
     );
 
     expect(screen.getByRole('textbox')).toBeInTheDocument();
-    // expect(screen.getByTestId('character-list')).toBeInTheDocument(); // CharacterList
+    expect(screen.getByTestId('character-list')).toBeInTheDocument(); // CharacterList
   });
 
   it('should fetch characters on mount', async () => {
