@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useCharacterContext } from '../context/useCharacterContext';
-import searchIcon from '../assets/search.svg';
-import { fetchCharacters } from '../services/marvelApi';
+import { useCharacterContext } from '../../context/useCharacterContext';
+import searchIcon from '../../assets/search.svg';
+import { fetchCharacters } from '../../services/marvelApi';
 
 export default function SearchBar() {
   const [search, setSearch] = useState('');

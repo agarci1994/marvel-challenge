@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import { CharacterContext } from '../context/CharacterContext';
-import logo from '../assets/logo.svg';
-import favoriteIcon from '../assets/favorite-fill.svg';
+import { CharacterContext } from '../../context/CharacterContext';
+import logo from '../../assets/logo.svg';
+import favoriteIcon from '../../assets/favorite-fill.svg';
 import { Link } from 'react-router';
 
-export const NavBar = () => {
+const NavBar = () => {
   const context = useContext(CharacterContext);
 
   return (
@@ -19,3 +19,5 @@ export const NavBar = () => {
     </nav>
   );
 };
+
+export default NavBar;

@@ -1,9 +1,9 @@
 import { CharacterProvider } from './context/CharacterProvider';
-import { NavBar } from './components/NavBar';
-import Home from './pages/Home';
+import NavBar from './components/NavBar/NavBar';
+import Home from './pages/HomePage/Home';
 import { BrowserRouter, Routes, Route } from 'react-router';
-import Favorites from './pages/Favorites';
-import CharacterDetails from './pages/CharacterDetails';
+import Favorites from './pages/FavoritesPage/Favorites';
+import CharacterDetails from './pages/CharacterDetailsPage/CharacterDetails';
 
 export default function App() {
   return (

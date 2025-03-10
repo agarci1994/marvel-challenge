@@ -18,7 +18,7 @@ export const getCachedData = (key: string) => {
   return null;
 };
 
-const savedCachedData = (key: string, data: unknown) => {
+export const savedCachedData = (key: string, data: unknown) => {
   localStorage.setItem(key, JSON.stringify(data));
   localStorage.setItem(`${key}_timestamp`, Date.now().toString());
 };

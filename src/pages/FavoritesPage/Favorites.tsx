@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
-import CharacterList from '../components/CharacterList';
-import SearchBar from '../components/SearchBar';
-import { useCharacterContext } from '../context/useCharacterContext';
+import CharacterList from '../../components/CharacterList/CharacterList';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import { useCharacterContext } from '../../context/useCharacterContext';
 
 interface Character {
   id: number;
